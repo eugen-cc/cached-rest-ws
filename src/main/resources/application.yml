@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cached-rest-proxy
+  cache:
+    cache-names: myCache
+    jcache:
+      config: classpath:ehcache.xml
+backend:
+  url: http://localhost:8081/webservice/XDataWebservice.wsdl
+
+springdoc:
+  swagger-ui:
+    path: /
+    csrf:
+      enabled: true
+  tagSorter: alpha
+
+logging:
+  level:
+    root: INFO

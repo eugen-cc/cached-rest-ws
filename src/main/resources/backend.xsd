@@ -1,0 +1,75 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://eugen.cc/spring-boot-soap-xdata"
+           targetNamespace="http://eugen.cc/spring-boot-soap-xdata"
+           elementFormDefault="qualified">
+
+    <xs:element name="getXDataRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getXDataResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="XData" type="tns:XData" maxOccurs="unbounded"/>
+                <xs:element name="responseTime" type="xs:dateTime" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getXDataByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getXDataByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="XData" type="tns:XData"/>
+                <xs:element name="responseTime" type="xs:dateTime" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getXDataByMetadataRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="XMetadata" type="tns:MetadataType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getXDataByMetadataResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="XData" type="tns:XData" maxOccurs="unbounded"/>
+                <xs:element name="responseTime" type="xs:dateTime" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="XData">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="XMetadata" type="tns:MetadataType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MetadataType">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="XMetadata">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="xmetadata" type="tns:MetadataType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

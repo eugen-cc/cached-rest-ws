@@ -1,0 +1,134 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://eugen.cc/spring-boot-soap-xdata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eugen.cc/spring-boot-soap-xdata" targetNamespace="http://eugen.cc/spring-boot-soap-xdata">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://eugen.cc/spring-boot-soap-xdata">
+            <xs:element name="getXDataRequest">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="getXDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="XData" type="tns:XData"/>
+                        <xs:element name="responseTime" type="xs:dateTime"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getXDataByIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getXDataByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="XData" type="tns:XData"/>
+                        <xs:element name="responseTime" type="xs:dateTime"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getXDataByMetadataRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="XMetadata" type="tns:MetadataType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getXDataByMetadataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="XData" type="tns:XData"/>
+                        <xs:element name="responseTime" type="xs:dateTime"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="XData">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="description" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="XMetadata" type="tns:MetadataType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MetadataType">
+                <xs:sequence>
+                    <xs:element name="key" type="xs:string"/>
+                    <xs:element name="value" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="XMetadata">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="xmetadata" type="tns:MetadataType"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getXDataByMetadataResponse">
+        <wsdl:part element="tns:getXDataByMetadataResponse" name="getXDataByMetadataResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getXDataRequest">
+        <wsdl:part element="tns:getXDataRequest" name="getXDataRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getXDataResponse">
+        <wsdl:part element="tns:getXDataResponse" name="getXDataResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getXDataByIdRequest">
+        <wsdl:part element="tns:getXDataByIdRequest" name="getXDataByIdRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getXDataByMetadataRequest">
+        <wsdl:part element="tns:getXDataByMetadataRequest" name="getXDataByMetadataRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getXDataByIdResponse">
+        <wsdl:part element="tns:getXDataByIdResponse" name="getXDataByIdResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="XDataPort">
+        <wsdl:operation name="getXDataByMetadata">
+            <wsdl:input message="tns:getXDataByMetadataRequest" name="getXDataByMetadataRequest"> </wsdl:input>
+            <wsdl:output message="tns:getXDataByMetadataResponse" name="getXDataByMetadataResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getXData">
+            <wsdl:input message="tns:getXDataRequest" name="getXDataRequest"> </wsdl:input>
+            <wsdl:output message="tns:getXDataResponse" name="getXDataResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getXDataById">
+            <wsdl:input message="tns:getXDataByIdRequest" name="getXDataByIdRequest"> </wsdl:input>
+            <wsdl:output message="tns:getXDataByIdResponse" name="getXDataByIdResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="XDataPortSoap11" type="tns:XDataPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getXDataByMetadata">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getXDataByMetadataRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getXDataByMetadataResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getXData">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getXDataRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getXDataResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getXDataById">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getXDataByIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getXDataByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="XDataPortService">
+        <wsdl:port binding="tns:XDataPortSoap11" name="XDataPortSoap11">
+            <soap:address location="http://localhost:8081/webservice"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

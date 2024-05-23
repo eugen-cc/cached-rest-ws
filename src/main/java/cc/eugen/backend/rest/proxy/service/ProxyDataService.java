@@ -14,7 +14,9 @@ import java.util.Optional;
 @Slf4j
 public class ProxyDataService {
 
+
     private ProxyResourceRepository repo;
+    private ProxyResourceRepository cachedRepo;
 
     public List<ProxyResourceEntity> getAllResourceEntities() {
         return repo.getAll();

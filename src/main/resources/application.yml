@@ -8,6 +8,19 @@ spring:
     cache-names: myCache
     jcache:
       config: classpath:ehcache.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
 backend:
   url: http://localhost:8081/webservice/XDataWebservice.wsdl
 
@@ -18,6 +31,37 @@ springdoc:
       enabled: true
   tagSorter: alpha
 
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 2
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      recordExceptions:
+        - java.net.ConnectException
+        - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
+        - org.springframework.ws.client.WebServiceIOException
+        - java.io.IOException
+
+
+    shared:
+      slidingWindowSize: 100
+      permittedNumberOfCallsInHalfOpenState: 30
+      waitDurationInOpenState: 1s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+
+  instances:
+    backendCB:
+      baseConfig: default
+
 logging:
   level:
     root: INFO
+    io.github.resilience4j: DEBUG

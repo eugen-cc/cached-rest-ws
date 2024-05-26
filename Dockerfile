@@ -1,8 +1,14 @@
-FROM openjdk:17-slim
-LABEL authors="Eugen Gross"
+# Use the latest Alpine Linux image
+FROM alpine:latest
+
+# Install OpenJDK JRE
+RUN apk update && apk add --no-cache openjdk17-jre
+
+# Set the working directory
+WORKDIR /app
 
 EXPOSE 8080
 
-COPY target/cached-rest-proxy-*.jar .
+COPY target/cached-rest-proxy-*.jar ./app.jar
 
-ENTRYPOINT ["java", "-jar", "cached-rest-proxy-0.0.1-SNAPeSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

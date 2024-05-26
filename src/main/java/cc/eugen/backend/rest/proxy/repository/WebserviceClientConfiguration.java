@@ -8,11 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.WebServiceMessageSender;
-import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
 
 
 @Configuration
@@ -41,6 +39,7 @@ public class WebserviceClientConfiguration {
         marshaller.setContextPath("cc.eugen.backend.ws.generated");
         return marshaller;
     }
+
     @Bean
     public WebServiceMessageSender httpComponentsMessageSender() {
 

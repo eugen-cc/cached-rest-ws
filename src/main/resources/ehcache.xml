@@ -6,23 +6,20 @@
             http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.0.xsd">
 
     <cache alias="allCache">
-
         <value-type>java.util.List</value-type>
         <expiry>
-            <ttl unit="seconds">20</ttl>
+            <ttl unit="seconds">60</ttl>
         </expiry>
-
         <resources>
             <offheap unit="MB">50</offheap>
         </resources>
     </cache>
+
     <cache alias="byIdCache">
-
-        <value-type>java.util.Optional</value-type>
+        <value-type>cc.eugen.backend.rest.proxy.model.ProxyResourceEntity</value-type>
         <expiry>
-            <ttl unit="seconds">20</ttl>
+            <ttl unit="minutes">2</ttl>
         </expiry>
-
         <resources>
             <offheap unit="MB">30</offheap>
         </resources>
@@ -31,13 +28,11 @@
     <cache alias="byMetadataCache">
         <value-type>java.util.List</value-type>
         <expiry>
-            <ttl unit="minutes">5</ttl>
+            <ttl unit="minutes">2</ttl>
         </expiry>
-
         <resources>
             <offheap unit="MB">45</offheap>
         </resources>
     </cache>
-
 
 </config>

@@ -1,7 +1,7 @@
 package cc.eugen.backend.rest.proxy.service;
 
 import cc.eugen.backend.rest.proxy.model.ProxyResourceEntity;
-import cc.eugen.backend.rest.proxy.repository.ProxyResourceRepository;
+import cc.eugen.backend.rest.proxy.repository.IDataRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,7 @@ import java.util.Optional;
 @Slf4j
 public class ProxyDataService {
 
-
-    private ProxyResourceRepository repo;
-    private ProxyResourceRepository cachedRepo;
+    private IDataRepository repo;
 
     public List<ProxyResourceEntity> getAllResourceEntities() {
         return repo.getAll();

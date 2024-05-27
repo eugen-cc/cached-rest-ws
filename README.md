@@ -1,4 +1,5 @@
-# cached-rest-proxy
+# cached-rest-proxy [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/U5fJzpDKW5QqtcMcjS8vbG/RGMbYMN9kcAzNSWCqJLX5t/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/U5fJzpDKW5QqtcMcjS8vbG/RGMbYMN9kcAzNSWCqJLX5t/tree/main)
+
 Example for a cached REST Proxy App.
 This APP retrieves Data from another SOAP Webservice
 
